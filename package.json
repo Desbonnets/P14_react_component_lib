@@ -1,5 +1,5 @@
 {
-  "name": "p14_react_data_table",
+  "name": "p14_react_data_tables",
   "version": "0.1.0",
   "author": "Desbonnets Gilles <gillesdesbonnets@gmail.com>",
   "private": false,
@@ -52,6 +52,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Desbonnets/p14_react_data_table"
+    "url": "https://github.com/Desbonnets/p14_react_data_tables"
   }
 }
