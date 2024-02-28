@@ -1,5 +1,5 @@
 # React Data Table
-This component is an npm package and can be imported as follows: `npm i `
+This component is an npm package and can be imported as follows: `npm i p14_react_data_table`
 
 ## 1. Description
 
@@ -52,7 +52,7 @@ const employeesHeader = [
 We can then use the component as follows:
 
 ```jsx
-import Table from '@kgabard/react-data-table'
+import Table from 'p14-react-data-table'
 
 <Table
   data={employeesList}

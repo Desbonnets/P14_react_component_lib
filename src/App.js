@@ -48,7 +48,29 @@ function App() {
             city: 'City2',
             state: 'State2',
             zipCode: 'azerty156'
-        }
+        },
+        {
+            firstName: 'Elijah',
+            lastName: 'Larsen',
+            startDate: '9/3/2006',
+            department: 'Marketing',
+            dateOfBirth: '12/26/1997',
+            street: 'Chambers Alley',
+            city: 'Bridgeport',
+            state: 'Tennessee',
+            zipCode: '53584',
+          },
+          {
+            firstName: 'John',
+            lastName: 'Donovan',
+            startDate: '9/1/2006',
+            department: 'Sales',
+            dateOfBirth: '7/17/1976',
+            street: 'Monroe Tunnel',
+            city: 'San Antonio',
+            state: 'Florida',
+            zipCode: '10494',
+          },
     ];
 
     return (
