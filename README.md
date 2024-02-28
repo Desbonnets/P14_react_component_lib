@@ -52,9 +52,9 @@ const employeesHeader = [
 We can then use the component as follows:
 
 ```jsx
-import Table from 'p14-react-data-tables'
+import { DataTable } from 'p14-react-data-tables'
 
-<Table
+<DataTable
   data={employeesList}
   header={employeesHeader}
   enableSearch={true}
