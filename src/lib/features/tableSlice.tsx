@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Header from '../modelisations/Header';
 
 interface InitialState {
     loading: boolean;
     initialBody: any[],
     body: any[];
-    header: Array<{ id: string; label: string; type: string }>;
+    header: Header[];
     error: string | null;
 }
 
@@ -29,7 +30,7 @@ const tableSlice = createSlice({
         setInitialBodyTable(state, action) {
             state.initialBody = action.payload;
         },
-        setHeaderTable(state, action: PayloadAction<Array<{ id: string; label: string; type: string }>>) {
+        setHeaderTable(state, action: PayloadAction<Header[]>) {
             state.header = action.payload
         }
     },
