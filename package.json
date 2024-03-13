@@ -10,8 +10,8 @@
     "README.md"
   ],
   "scripts": {
-    "start": "react-scripts && start",
-    "build": "react-scripts && build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "clean": "rm -rf dist",
     "build:package": "npm run clean && tsc && cp package.json README.md ./dist",
     "test": "react-scripts test",
@@ -36,14 +36,20 @@
     ]
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
+    "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "typescript": "^5.3.3",
+    "babel-cli": "^6.26.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.0.4",
+    "react-scripts": "^5.0.1",
+    "typescript": "^3.2.1",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.63",
+    "@types/react-dom": "^18.2.20",
     "web-vitals": "^2.1.4"
   },
   "peerDependencies": {
