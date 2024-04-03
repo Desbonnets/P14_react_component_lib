@@ -6,6 +6,9 @@ interface InitialState {
     initialBody: any[],
     body: any[];
     header: Header[];
+    pageNumber: number;
+    itemNumber: number;
+    displayItem: any[];
     error: string | null;
 }
 
@@ -14,6 +17,9 @@ const initialState: InitialState = {
     initialBody: [],
     body: [],
     header: [],
+    pageNumber: 1,
+    itemNumber: 10,
+    displayItem: [],
     error: null,
 };
 
@@ -31,10 +37,46 @@ const tableSlice = createSlice({
             state.initialBody = action.payload;
         },
         setHeaderTable(state, action: PayloadAction<Header[]>) {
-            state.header = action.payload
+            state.header = action.payload;
+        },
+        setPageNumber(state, action: PayloadAction<number>) {
+            state.pageNumber = action.payload;
+        },
+        setItemNumber(state, action: PayloadAction<number>) {
+            state.itemNumber = action.payload;
+        },
+        setDisplayItem(state, action: PayloadAction<any[]>) {
+            state.displayItem = action.payload;
+        },
+        nextPage(state) {
+            state.pageNumber += 1;
+        },
+        prevPage(state) {
+            if (state.pageNumber > 1) {
+                state.pageNumber -= 1;
+            }
+        },
+        goToPage(state, action: PayloadAction<number>) {
+            state.pageNumber = action.payload;
+        },
+        resetPagination(state) {
+            state.pageNumber = 1;
         }
     },
 });
 
-export const { removeBodyTable, setBodyTable, setInitialBodyTable, setHeaderTable } = tableSlice.actions
+
+export const {
+    removeBodyTable,
+    setBodyTable,
+    setInitialBodyTable,
+    setHeaderTable,
+    setPageNumber,
+    setItemNumber,
+    setDisplayItem,
+    nextPage,
+    prevPage,
+    goToPage,
+    resetPagination
+} = tableSlice.actions;
 export default tableSlice.reducer;

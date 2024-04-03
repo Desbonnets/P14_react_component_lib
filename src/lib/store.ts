@@ -5,6 +5,10 @@ const store = configureStore({
     reducer: {
         table: tableReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+          serializableCheck: false,
+        }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

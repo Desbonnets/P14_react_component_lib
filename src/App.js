@@ -6,8 +6,8 @@ function App() {
     let headerExemple = [
         { id: 'firstName', label: 'First Name', type: 'string' },
         { id: 'lastName', label: 'Last Name', type: 'string' },
-        { id: 'startDate', label: 'Start Date', type: 'string' },
-        { id: 'department', label: 'Department', type: 'date' },
+        { id: 'startDate', label: 'Start Date', type: 'date' },
+        { id: 'department', label: 'Department', type: 'string' },
         { id: 'dateOfBirth', label: 'Date of Birth', type: 'date' },
         { id: 'street', label: 'Street', type: 'string' },
         { id: 'city', label: 'City', type: 'string' },
@@ -19,9 +19,9 @@ function App() {
         {
             firstName: 'Dupont',
             lastName: 'Alain',
-            startDate: '7/2/2024',
+            startDate: new Date('07/02/2024'),
             department: 'Department0',
-            dateOfBirth: '1/11/2000',
+            dateOfBirth: new Date('1/11/2000'),
             street: 'Street0',
             city: 'City0',
             state: 'State0',
@@ -30,9 +30,9 @@ function App() {
         {
             firstName: 'Dupont',
             lastName: 'Alain',
-            startDate: '7/27/2024',
+            startDate: new Date('07/27/2024'),
             department: 'Department1',
-            dateOfBirth: '2/11/2000',
+            dateOfBirth: new Date('02/11/2000'),
             street: 'Street1',
             city: 'City1',
             state: 'State1',
@@ -41,9 +41,9 @@ function App() {
         {
             firstName: 'Toto',
             lastName: 'Alain',
-            startDate: '2/8/2028',
+            startDate: new Date('02/08/2028'),
             department: 'Department2',
-            dateOfBirth: '12/11/2005',
+            dateOfBirth: new Date('12/11/2005'),
             street: 'Street2',
             city: 'City2',
             state: 'State2',
@@ -52,9 +52,9 @@ function App() {
         {
             firstName: 'Elijah',
             lastName: 'Larsen',
-            startDate: '9/3/2006',
+            startDate: new Date('09/03/2006'),
             department: 'Marketing',
-            dateOfBirth: '6/12/1997',
+            dateOfBirth: new Date('06/12/1997'),
             street: 'Chambers Alley',
             city: 'Bridgeport',
             state: 'Tennessee',
@@ -63,9 +63,9 @@ function App() {
         {
             firstName: 'John',
             lastName: 'Donovan',
-            startDate: '9/1/2006',
+            startDate: new Date('09/01/2006'),
             department: 'Sales',
-            dateOfBirth: '7/17/1976',
+            dateOfBirth: new Date('07/17/1976'),
             street: 'Monroe Tunnel',
             city: 'San Antonio',
             state: 'Florida',
@@ -73,9 +73,30 @@ function App() {
         },
     ];
 
+    // Fonction pour générer une date aléatoire dans une fourchette donnée
+    function randomDate(start, end) {
+        return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    }
+
+    for (let i = 0; i < 50; i++) {
+        const newObj = {
+            firstName: 'FirstName' + i,
+            lastName: 'LastName' + i,
+            startDate: randomDate(new Date('1/1/2024'), new Date()),
+            department: 'Department' + i,
+            dateOfBirth: randomDate(new Date('1/1/1970'), new Date()),
+            street: 'Street' + i,
+            city: 'City' + i,
+            state: 'State' + i,
+            zipCode: 'ZipCode' + i
+        };
+        // Ajouter le nouvel objet à l'array existant
+        dataExemple.push(newObj);
+    }
+
     return (
         <div>
-            <DataTable data={dataExemple} header={headerExemple} enableSearch={true} />
+            <DataTable data={dataExemple} header={headerExemple} enableSearch={true} enablePagination={true} />
         </div>
     )
 }

@@ -5,9 +5,14 @@ import { setHeaderTable, setBodyTable, setInitialBodyTable } from '../features/t
 import Search from './Search';
 import Tri from './Tri';
 import Header from '../modelisations/Header';
+import Pagination from './Pagination';
+import PaginationEntries from './PaginationEntries';
+import PaginationButtons from './PaginationButtons';
+import TableEntries from './TableEntries';
 
 interface TableProps {
     enableSearch?: boolean;
+    enablePagination?: boolean;
     data: Array<any> | null;
     header: Header[];
 }
@@ -16,7 +21,7 @@ interface Payload {
     [key: string]: any;
 }
 
-const Table: React.FC<TableProps> = ({ data, header, enableSearch = false }) => {
+const Table: React.FC<TableProps> = ({ data, header, enableSearch = false, enablePagination = false }) => {
 
     const dispatch = useDispatch();
 
@@ -30,25 +35,38 @@ const Table: React.FC<TableProps> = ({ data, header, enableSearch = false }) => 
 
     return (
         <div>
-            {enableSearch ? (
-                <Search />
-            ) : null}
+            <div className={'tableOptions'}>
+                {enablePagination ? (
+                    <PaginationEntries />
+                ) : null}
+                {enableSearch ? (
+                    <Search />
+                ) : null}
+            </div>
             <table className="display">
                 <thead>
                     <Tri />
                 </thead>
                 <tbody>
-                    {body !== null ? (
+                    {enablePagination ? (
+                        <Pagination />
+                    ) : (body !== null ? (
                         body.length > 0 ? body.map((payload: Payload) => {
                             return <tr key={payload[0] + Math.random().toString(16).slice(2)}>
                                 {header.length > 0 ? header.map((column: Header) => {
-                                    return <td key={payload[column.id] + Math.random().toString(16).slice(2)}>{payload[column.id]}</td>;
+                                    return <td key={payload[column.id] + Math.random().toString(16).slice(2)}>{column.type.toLowerCase() === 'date' ? payload[column.id].toLocaleDateString() : payload[column.id].toString()}</td>;
                                 }) : null}
                             </tr>
                         }) : null
-                    ) : null}
+                    ) : null)}
                 </tbody>
             </table>
+            <div className={'tableOptions'}>
+                <TableEntries />
+                {enablePagination ? (
+                    <PaginationButtons />
+                ) : null}
+            </div>
         </div>
     )
 };

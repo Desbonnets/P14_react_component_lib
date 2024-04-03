@@ -7,12 +7,13 @@ import Header, { verifierModeleHeaderArray } from '../modelisations/Header';
 
 interface DataTableProps {
     enableSearch?: boolean;
+    enablePagination?: boolean;
     data: Array<any>;
     // header: Array<{ id: string; label: string; type: string }>;
     header: Header[];
 }
 
-const DataTable: React.FC<DataTableProps> = ({ data = null, header, enableSearch = false }) => {
+const DataTable: React.FC<DataTableProps> = ({ data = null, header, enableSearch = false, enablePagination = false }) => {
 
     const [valideParam, setValideParam] = useState<boolean>(false);
 
@@ -27,7 +28,7 @@ const DataTable: React.FC<DataTableProps> = ({ data = null, header, enableSearch
 
     return (
         <Provider store={store}>
-            {valideParam ? <Table data={data} header={header} enableSearch={enableSearch} ></Table> : null}
+            {valideParam ? <Table data={data} header={header} enableSearch={enableSearch} enablePagination={enablePagination} ></Table> : null}
             {/* <Table data={data} header={header} enableSearch={enableSearch} ></Table> */}
         </Provider>
     )

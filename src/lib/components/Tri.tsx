@@ -24,8 +24,15 @@ const Tri: React.FC<TriProps> = () => {
             const currentHeader = header.find((element: Header) => element.id === id);
             if (currentHeader) {
                 if (currentHeader.type.toLowerCase() === 'date') {
-                    const x = new Date(a[id]).getTime();
-                    const y = new Date(b[id]).getTime();
+                    let x;
+                    let y;
+                    if(a[id] instanceof Date && b[id] instanceof Date){
+                        x = a[id].getTime();
+                        y = b[id].getTime();
+                    }else{
+                        x = new Date(a[id]).getTime();
+                        y = new Date(b[id]).getTime();
+                    }
                     if (newOrder === 'asc') {
                         return x - y;
                     } else {

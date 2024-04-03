@@ -53,3 +53,21 @@ th.sortable.asc::after {
 th.sortable.desc::after {
     border-top: 5px solid black;
 }
+
+.currentPage {
+    background-color: rgb(153, 153, 255);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.tableOptions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
