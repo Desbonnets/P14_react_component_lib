@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = () => {
             {displayItem.map((item: any, index: number) => (
                 <tr key={index}>
                     {header.length > 0 ? header.map((column: Header) => {
-                        return <td key={item[column.id] + Math.random().toString(16).slice(2)}>{column.type.toLowerCase() === 'date' ? item[column.id].toLocaleDateString() : item[column.id].toString()}</td>;
+                        return <td key={item[column.id] + Math.random().toString(16).slice(2)}>{column.type.toLowerCase() === 'date' ? new Date(item[column.id]).toLocaleDateString() : item[column.id].toString()}</td>;
                     }) : null}
                 </tr>
             ))}

@@ -14,9 +14,9 @@ const employeesList = [
   {
     firstName: 'Elijah',
     lastName: 'Larsen',
-    startDate: '9/3/2006',
+    startDate: new Date('9/3/2006'),
     department: 'Marketing',
-    dateOfBirth: '12/26/1997',
+    dateOfBirth: new Date('12/26/1997'),
     street: 'Chambers Alley',
     city: 'Bridgeport',
     state: 'Tennessee',
@@ -25,9 +25,9 @@ const employeesList = [
   {
     firstName: 'John',
     lastName: 'Donovan',
-    startDate: '9/1/2006',
+    startDate: new Date('9/1/2006'),
     department: 'Sales',
-    dateOfBirth: '7/17/1976',
+    dateOfBirth: new Date('7/17/1976'),
     street: 'Monroe Tunnel',
     city: 'San Antonio',
     state: 'Florida',
@@ -37,15 +37,15 @@ const employeesList = [
 ];
 
 const employeesHeader = [
-    {id: 'firstName', label: 'First Name'},
-    {id: 'lastName', label: 'Last Name'},
-    {id: 'startDate', label: 'Start Date'},
-    {id: 'department', label: 'Department'},
-    {id: 'dateOfBirth', label: 'Date of Birth'},
-    {id: 'street', label: 'Street'},
-    {id: 'city', label: 'City'},
-    {id: 'state', label: 'State'},
-    {id: 'zipCode', label: 'Zip Code'}
+    {id: 'firstName', label: 'First Name', type: 'string'},
+    {id: 'lastName', label: 'Last Name', type: 'string'},
+    {id: 'startDate', label: 'Start Date', type: 'date'},
+    {id: 'department', label: 'Department', type: 'string'},
+    {id: 'dateOfBirth', label: 'Date of Birth', type: 'date'},
+    {id: 'street', label: 'Street', type: 'string'},
+    {id: 'city', label: 'City', type: 'string'},
+    {id: 'state', label: 'State', type: 'string'},
+    {id: 'zipCode', label: 'Zip Code', type: 'string'}
 ]
 ```
 
@@ -54,9 +54,10 @@ We can then use the component as follows:
 ```jsx
 import { DataTable } from 'p14-react-data-tables'
 
-<DataTable
-  data={employeesList}
-  header={employeesHeader}
-  enableSearch={true}
+<DataTable 
+  data={employeesList} 
+  header={employeesHeader} 
+  enableSearch={true} 
+  enablePagination={true} 
 />
 ```

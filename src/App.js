@@ -96,7 +96,10 @@ function App() {
 
     return (
         <div>
+            <h2>Data exemple</h2>
             <DataTable data={dataExemple} header={headerExemple} enableSearch={true} enablePagination={true} />
+            <h2>API exemple</h2>
+            <DataTable apiData={'https://660d69d86ddfa2943b3457a1.mockapi.io/api/v1/data'} header={headerExemple} enableSearch={true} enablePagination={true} />
         </div>
     )
 }

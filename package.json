@@ -1,6 +1,6 @@
 {
   "name": "p14_react_data_tables",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Desbonnets Gilles <gillesdesbonnets@gmail.com>",
   "private": false,
   "main": "dist/index.js",

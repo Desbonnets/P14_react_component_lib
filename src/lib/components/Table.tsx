@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
-import { setHeaderTable, setBodyTable, setInitialBodyTable } from '../features/tableSlice';
+import { AppDispatch, RootState } from '../store';
+import { setHeaderTable, setBodyTable, setInitialBodyTable, getData } from '../features/tableSlice';
 import Search from './Search';
 import Tri from './Tri';
 import Header from '../modelisations/Header';
@@ -13,6 +13,7 @@ import TableEntries from './TableEntries';
 interface TableProps {
     enableSearch?: boolean;
     enablePagination?: boolean;
+    apiData: string | null;
     data: Array<any> | null;
     header: Header[];
 }
@@ -21,17 +22,27 @@ interface Payload {
     [key: string]: any;
 }
 
-const Table: React.FC<TableProps> = ({ data, header, enableSearch = false, enablePagination = false }) => {
+const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enableSearch = false, enablePagination = false }) => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
 
     const { body } = useSelector((state: RootState) => state.table);
 
     useEffect(() => {
-        dispatch(setInitialBodyTable(data));
-        dispatch(setBodyTable(data));
+        if (data === null && apiData !== null) {
+            if (typeof apiData === 'string') {
+                dispatch(getData(apiData)).then((result: any) => {
+                    console.log(result);
+                });
+            }
+        } else if (data !== null && apiData === null) {
+            dispatch(setInitialBodyTable(data));
+            dispatch(setBodyTable(data));
+        } else {
+            console.error('data and apiData are null.');
+        }
         dispatch(setHeaderTable(header));
-    }, [data, header, dispatch]);
+    }, [data, apiData, header, dispatch]);
 
     return (
         <div>

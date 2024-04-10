@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Provider } from 'react-redux';
-import store from '../store';
-import '../index.css';
+import '../css/index.css';
 import Table from './Table';
 import Header, { verifierModeleHeaderArray } from '../modelisations/Header';
+import { generateStore } from '../store';
 
 interface DataTableProps {
     enableSearch?: boolean;
     enablePagination?: boolean;
     data: Array<any>;
+    apiData: string | null;
     // header: Array<{ id: string; label: string; type: string }>;
     header: Header[];
 }
 
-const DataTable: React.FC<DataTableProps> = ({ data = null, header, enableSearch = false, enablePagination = false }) => {
+const DataTable: React.FC<DataTableProps> = ({ data = null, apiData = null, header, enableSearch = false, enablePagination = false }) => {
 
     const [valideParam, setValideParam] = useState<boolean>(false);
 
@@ -26,9 +27,11 @@ const DataTable: React.FC<DataTableProps> = ({ data = null, header, enableSearch
         }
     }, [header]);
 
+    const storeInstance = generateStore();
+
     return (
-        <Provider store={store}>
-            {valideParam ? <Table data={data} header={header} enableSearch={enableSearch} enablePagination={enablePagination} ></Table> : null}
+        <Provider store={storeInstance}>
+            {valideParam ? <Table data={data} apiData={apiData} header={header} enableSearch={enableSearch} enablePagination={enablePagination} ></Table> : null}
             {/* <Table data={data} header={header} enableSearch={enableSearch} ></Table> */}
         </Provider>
     )

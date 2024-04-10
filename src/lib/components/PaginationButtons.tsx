@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { setDisplayItem } from '../features/tableSlice';
+import { setDisplayItem, setPageNumber } from '../features/tableSlice';
 
 interface PaginationButtonsProps { }
 
@@ -19,6 +19,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = () => {
         const startIndex = (pageNumber - 1) * itemNumber;
         const endIndex = startIndex + itemNumber;
         dispatch(setDisplayItem(body.slice(startIndex, endIndex)));
+        dispatch(setPageNumber(pageNumber));
         setCurrentPage(pageNumber);
     }
 
