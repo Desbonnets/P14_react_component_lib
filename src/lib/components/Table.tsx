@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../store';
+import { useAppDispatch, useAppSelector } from '../hook';
 import { setHeaderTable, setBodyTable, setInitialBodyTable, getData } from '../features/tableSlice';
 import Search from './Search';
 import Tri from './Tri';
@@ -24,16 +23,14 @@ interface Payload {
 
 const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enableSearch = false, enablePagination = false }) => {
 
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
 
-    const { body } = useSelector((state: RootState) => state.table);
+    const { body } = useAppSelector((state) => state.table);
 
     useEffect(() => {
         if (data === null && apiData !== null) {
             if (typeof apiData === 'string') {
-                dispatch(getData(apiData)).then((result: any) => {
-                    console.log(result);
-                });
+                dispatch(getData(apiData));
             }
         } else if (data !== null && apiData === null) {
             dispatch(setInitialBodyTable(data));

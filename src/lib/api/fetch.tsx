@@ -30,13 +30,13 @@ async function fetchData(url: string, options: any) {
 
 export async function fetchGetData(url: string, token: string | null = null) {
   let options;
-  
-  if(token === null){
+
+  if (token === null) {
     options = {
-      method: 'GET',
+      method: 'POST',
       mode: 'cors',
     };
-  }else{
+  } else {
     options = {
       method: 'GET',
       headers: { 'authorization': 'Bearer ' + token, },

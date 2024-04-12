@@ -1,19 +1,23 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, Store } from '@reduxjs/toolkit';
 import tableReducer from './features/tableSlice';
 
-export const generateStore = () => {
-  return configureStore({
-      reducer: {
-        table: tableReducer,
-      },
-      middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-          serializableCheck: false,
-        }),
+let store: Store;
+
+export const generateStore = (): Store => {
+  store = configureStore({
+    reducer: {
+      table: tableReducer,
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
+  return store;
 };
-export type RootState = ReturnType<typeof generateStore>['getState'];
-export type AppDispatch = ReturnType<typeof generateStore>['dispatch'];
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 
 /*
 const store = configureStore({

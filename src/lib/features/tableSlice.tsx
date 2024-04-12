@@ -30,7 +30,7 @@ const initialState: InitialState = {
  * Récupère les données
  * @type {AsyncThunk<Object, void, AsyncThunkConfig>}
  */
-export const getData = createAsyncThunk(
+export const getData: any | [] = createAsyncThunk(
     'table/getData',
     async (apiData: string | null) => {
         if (apiData !== null) {
@@ -102,10 +102,11 @@ const tableSlice = createSlice({
                 state.error = null;
             })
             .addCase(getData.rejected, (state, action) => {
+                console.log(action.error);
                 state.loading = false;
                 state.initialBody = [];
                 state.body = [];
-                state.error = action.error.message === undefined ? null : action.error.message;
+                state.error = action.error.message === undefined ? 'Error' : action.error.message;
             })
     },
 });
