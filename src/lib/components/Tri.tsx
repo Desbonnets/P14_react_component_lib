@@ -26,10 +26,10 @@ const Tri: React.FC<TriProps> = () => {
                 if (currentHeader.type.toLowerCase() === 'date') {
                     let x;
                     let y;
-                    if(a[id] instanceof Date && b[id] instanceof Date){
+                    if (a[id] instanceof Date && b[id] instanceof Date) {
                         x = a[id].getTime();
                         y = b[id].getTime();
-                    }else{
+                    } else {
                         x = new Date(a[id]).getTime();
                         y = new Date(b[id]).getTime();
                     }
