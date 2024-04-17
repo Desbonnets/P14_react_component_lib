@@ -74,7 +74,7 @@ function App() {
     ];
 
     // Fonction pour générer une date aléatoire dans une fourchette donnée
-    function randomDate(start, end) {
+    function randomDate(start: Date, end: Date) {
         return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
 

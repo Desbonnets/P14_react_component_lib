@@ -8,8 +8,8 @@ import { generateStore } from '../store';
 interface DataTableProps {
     enableSearch?: boolean;
     enablePagination?: boolean;
-    data: Array<any>;
-    apiData: string | null;
+    data?: Array<any>;
+    apiData?: string | null;
     // header: Array<{ id: string; label: string; type: string }>;
     header: Header[];
 }

@@ -33,7 +33,7 @@ export async function fetchGetData(url: string, token: string | null = null) {
 
   if (token === null) {
     options = {
-      method: 'POST',
+      method: 'GET',
       mode: 'cors',
     };
   } else {
