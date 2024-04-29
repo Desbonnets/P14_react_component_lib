@@ -3,6 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import { setBodyTable } from '../features/tableSlice';
 import Header from '../modelisations/Header';
+import { styled } from 'styled-components';
+
+const Tr = styled.tr`
+    background-color: ${(props) => props.theme.colors.colorHeader};
+`;
+
+const Th = styled.th`
+${(props) => props.theme.colors.colorTh !== '#fff' ? 'border: 1px solid' + props.theme.colors.colorTh : 'border: ' + props.theme.colors.border };
+    text-align: left;
+    padding: 8px;
+`;
 
 interface TriProps { }
 
@@ -26,10 +37,10 @@ const Tri: React.FC<TriProps> = () => {
                 if (currentHeader.type.toLowerCase() === 'date') {
                     let x;
                     let y;
-                    if(a[id] instanceof Date && b[id] instanceof Date){
+                    if (a[id] instanceof Date && b[id] instanceof Date) {
                         x = a[id].getTime();
                         y = b[id].getTime();
-                    }else{
+                    } else {
                         x = new Date(a[id]).getTime();
                         y = new Date(b[id]).getTime();
                     }
@@ -63,13 +74,13 @@ const Tri: React.FC<TriProps> = () => {
         return 'sortable';
     };
 
-    return (<tr className={'header'}>
+    return (<Tr>
         {header.length > 0
             ? header.map((payload: Header) => {
-                return <th className={getHeaderClass(payload.id)} id={payload.id} key={payload.id + Math.random().toString(16).slice(2)} onClick={(e: MouseEvent<HTMLTableHeaderCellElement>) => handleTri(e, payload.id)}>{payload.label}</th>
+                return <Th className={getHeaderClass(payload.id)} id={payload.id} key={payload.id + Math.random().toString(16).slice(2)} onClick={(e: MouseEvent<HTMLTableHeaderCellElement>) => handleTri(e, payload.id)}>{payload.label}</Th>
             })
             : null}
-    </tr>
+    </Tr>
     );
 };
 

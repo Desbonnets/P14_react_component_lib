@@ -8,20 +8,22 @@ interface PaginationButtonsProps { }
 const PaginationButtons: React.FC<PaginationButtonsProps> = () => {
 
     const dispatch = useDispatch()
-    const { body, itemNumber } = useSelector((state: RootState) => state.table);
+    const { body, itemNumber, error } = useSelector((state: RootState) => state.table);
     const [currentPage, setCurrentPage] = useState<number>(1);
+
+    function displayItems(pageNumber: number) {
+        if (error === null && body.error === undefined) {
+            const startIndex = (pageNumber - 1) * itemNumber;
+            const endIndex = startIndex + itemNumber;
+            dispatch(setDisplayItem(body.slice(startIndex, endIndex)));
+            dispatch(setPageNumber(pageNumber));
+            setCurrentPage(pageNumber);
+        }
+    }
 
     useEffect(() => {
         displayItems(1);
     }, [itemNumber, body]);
-
-    function displayItems(pageNumber: number) {
-        const startIndex = (pageNumber - 1) * itemNumber;
-        const endIndex = startIndex + itemNumber;
-        dispatch(setDisplayItem(body.slice(startIndex, endIndex)));
-        dispatch(setPageNumber(pageNumber));
-        setCurrentPage(pageNumber);
-    }
 
     function createPaginationButtons() {
         const pageCount = Math.ceil(body.length / itemNumber);
