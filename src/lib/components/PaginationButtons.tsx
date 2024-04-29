@@ -12,7 +12,6 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     function displayItems(pageNumber: number) {
-        console.log(body);
         if (error === null && body.error === undefined) {
             const startIndex = (pageNumber - 1) * itemNumber;
             const endIndex = startIndex + itemNumber;

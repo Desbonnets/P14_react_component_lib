@@ -8,12 +8,15 @@ import Pagination from './Pagination';
 import PaginationEntries from './PaginationEntries';
 import PaginationButtons from './PaginationButtons';
 import TableEntries from './TableEntries';
+import { styled } from 'styled-components';
 
 interface TableProps {
     enableSearch?: boolean;
     enablePagination?: boolean;
     apiData: string | null;
     data: Array<any> | null;
+    border?: string|null;
+    color?: string|null;
     header: Header[];
 }
 
@@ -21,7 +24,23 @@ interface Payload {
     [key: string]: any;
 }
 
-const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enableSearch = false, enablePagination = false }) => {
+const Tbody = styled.tbody`
+    tr:nth-child(even) {
+        background-color: ${(props) => props.theme.colors.colorTh};
+    }
+
+    tr {
+        background-color: ${(props) => props.theme.colors.colorTr};
+    }
+`;
+
+const Td = styled.td`
+    border: 1px solid ${(props) => props.theme.colors.colorTh};
+    text-align: left;
+    padding: 8px;
+`;
+
+const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enableSearch = false, enablePagination = false, border=null, color=null }) => {
 
     const dispatch = useAppDispatch();
 
@@ -42,7 +61,7 @@ const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enab
     }, [data, apiData, header, dispatch]);
 
     return (
-        <div>
+        <div className='dataTable'>
             <div className={'tableOptions'}>
                 {enablePagination ? (
                     <PaginationEntries />
@@ -51,23 +70,23 @@ const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enab
                     <Search />
                 ) : null}
             </div>
-            <table className="display">
+            <table className="display table">
                 <thead>
                     <Tri />
                 </thead>
-                <tbody>
+                <Tbody>
                     {enablePagination ? (
                         <Pagination />
                     ) : (body !== null ? (
                         body.length > 0 ? body.map((payload: Payload) => {
                             return <tr key={payload[0] + Math.random().toString(16).slice(2)}>
                                 {header.length > 0 ? header.map((column: Header) => {
-                                    return <td key={payload[column.id] + Math.random().toString(16).slice(2)}>{column.type.toLowerCase() === 'date' ? payload[column.id].toLocaleDateString() : payload[column.id].toString()}</td>;
+                                    return <Td key={payload[column.id] + Math.random().toString(16).slice(2)}>{column.type.toLowerCase() === 'date' ? payload[column.id].toLocaleDateString() : payload[column.id].toString()}</Td>;
                                 }) : null}
                             </tr>
                         }) : null
                     ) : null)}
-                </tbody>
+                </Tbody>
             </table>
             <div className={'tableOptions'}>
                 <TableEntries />
