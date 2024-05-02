@@ -25,3 +25,7 @@ yarn-error.log*
 dist/
 
 package-lock.json
+
+compose-dev.yaml
+
+Dockerfile
