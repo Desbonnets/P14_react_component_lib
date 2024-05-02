@@ -24,6 +24,12 @@ interface Payload {
     [key: string]: any;
 }
 
+const TableHtml = styled.table`
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: ${(props) => props.theme.colors.color};
+`;
 const Tbody = styled.tbody`
     tr:nth-child(even) {
         background-color: ${(props) => props.theme.colors.colorTh};
@@ -70,7 +76,7 @@ const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enab
                     <Search />
                 ) : null}
             </div>
-            <table className="display table">
+            <TableHtml className="display table">
                 <thead>
                     <Tri />
                 </thead>
@@ -87,7 +93,7 @@ const Table: React.FC<TableProps> = ({ data = null, apiData = null, header, enab
                         }) : null
                     ) : null)}
                 </Tbody>
-            </table>
+            </TableHtml>
             <div className={'tableOptions'}>
                 <TableEntries />
                 {enablePagination ? (
