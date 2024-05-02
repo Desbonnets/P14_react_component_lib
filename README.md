@@ -59,5 +59,14 @@ import { DataTable } from 'p14-react-data-tables'
   header={employeesHeader} 
   enableSearch={true} 
   enablePagination={true} 
+  color={'#999999'} 
+/>
+
+<DataTable 
+  apiData={'https://your.api.com/api/v1/data'} 
+  header={headerExemple} 
+  enableSearch={true} 
+  enablePagination={true} 
+  color={'#999999'} 
 />
 ```

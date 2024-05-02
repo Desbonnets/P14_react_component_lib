@@ -35,6 +35,21 @@ function reduceColor(hexColor: string, reduction: number) {
     return newHexColor;
 }
 
+function estCouleurClaire(couleur: string) {
+    // Convertir la couleur en RGB
+    var r, g, b;
+    couleur = couleur.substr(1);
+    r = parseInt(couleur.substr(0, 2), 16);
+    g = parseInt(couleur.substr(2, 2), 16);
+    b = parseInt(couleur.substr(4, 2), 16);
+
+    // Calculer la luminosité
+    var luminosite = (0.2126 * r) + (0.7152 * g) + (0.0722 * b);
+
+    // Retourner true si la luminosité est élevée (couleur claire)
+    return luminosite > 128;
+}
+
 interface DataTableProps {
     enableSearch?: boolean;
     enablePagination?: boolean;
@@ -62,12 +77,14 @@ const DataTable: React.FC<DataTableProps> = ({ data = null, apiData = null, head
     let COLORS;
     if(color !== null){
         const longColor: string = expandColor(color);
+        const textColor = estCouleurClaire(color) ? '#000' : '#fff';
         const colorHeader = longColor;
         const reductionValue = 17;
         const colorTr = reduceColor(colorHeader, reductionValue);
         const colorTh = reduceColor(colorTr, reductionValue);
 
         COLORS = {
+            color: textColor,
             colorHeader: colorTh,
             colorTh: colorTr,
             colorTr: colorHeader,
