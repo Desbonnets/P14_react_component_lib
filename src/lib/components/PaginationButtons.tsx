@@ -27,20 +27,54 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = () => {
 
     function createPaginationButtons() {
         const pageCount = Math.ceil(body.length / itemNumber);
+        const maxButtons = 4;
+        const offset = 2; // Number of pages before and after the current page
 
+        let startPage = Math.max(1, currentPage - offset);
+        let endPage = Math.min(pageCount, currentPage + offset);
+
+        // Adjust startPage and endPage if they don't fill the maxButtons
+        if (currentPage < 1) {
+            endPage = Math.min(pageCount,maxButtons);
+        } else if (currentPage > pageCount) {
+            startPage = Math.max(1, pageCount - maxButtons + 1);
+        }
+
+        const paginationButtons = [];
+        for (let i = startPage; i <= endPage; i++) {
+            paginationButtons.push(
+                <button
+                    className={currentPage === i ? 'currentPage' : ''}
+                    key={i}
+                    onClick={() => displayItems(i)}
+                >
+                    {i}
+                </button>
+            );
+        }
         return (
             <div id="pagination-buttons" className={'pagination'}>
-                <button disabled={currentPage === 1 ? true : false} key={'first_page'} onClick={() => displayItems(1)}>First page</button>
-                <button disabled={currentPage === 1 ? true : false} key={'prev_page'} onClick={() => displayItems(currentPage - 1)}>Previous page</button>
-                {Array.from({ length: pageCount }).map((_, index) => (
-                    <button className={currentPage === (index + 1) ? 'currentPage' : ''} key={index} onClick={() => displayItems(index + 1)}>
-                        {index + 1}
-                    </button>
-                ))}
-                <button disabled={currentPage === pageCount ? true : false} key={'next_page'} onClick={() => displayItems(currentPage + 1)}>Next page</button>
-                <button disabled={currentPage === pageCount ? true : false} key={'last_page'} onClick={() => displayItems(pageCount)}>Last page</button>
+                <button disabled={currentPage === 1} key={'first_page'} onClick={() => displayItems(1)}>First page</button>
+                <button disabled={currentPage === 1} key={'prev_page'} onClick={() => displayItems(currentPage - 1)}>Previous page</button>
+                {paginationButtons}
+                <button disabled={currentPage === pageCount} key={'next_page'} onClick={() => displayItems(currentPage + 1)}>Next page</button>
+                <button disabled={currentPage === pageCount} key={'last_page'} onClick={() => displayItems(pageCount)}>Last page</button>
             </div>
         );
+
+        // return (
+        //     <div id="pagination-buttons" className={'pagination'}>
+        //         <button disabled={currentPage === 1 ? true : false} key={'first_page'} onClick={() => displayItems(1)}>First page</button>
+        //         <button disabled={currentPage === 1 ? true : false} key={'prev_page'} onClick={() => displayItems(currentPage - 1)}>Previous page</button>
+        //         {Array.from({ length: pageCount }).map((_, index) => (
+        //             <button className={currentPage === (index + 1) ? 'currentPage' : ''} key={index} onClick={() => displayItems(index + 1)}>
+        //                 {index + 1}
+        //             </button>
+        //         ))}
+        //         <button disabled={currentPage === pageCount ? true : false} key={'next_page'} onClick={() => displayItems(currentPage + 1)}>Next page</button>
+        //         <button disabled={currentPage === pageCount ? true : false} key={'last_page'} onClick={() => displayItems(pageCount)}>Last page</button>
+        //     </div>
+        // );
     }
 
     return (
