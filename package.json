@@ -1,7 +1,13 @@
 {
   "name": "p14_react_data_tables",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Desbonnets Gilles <gillesdesbonnets@gmail.com>",
+  "description": "data table for react",
+  "keywords": [
+    "table",
+    "react",
+    "datatables"
+  ],
   "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",

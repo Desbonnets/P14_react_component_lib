@@ -1,9 +1,21 @@
 # React Data Table
+# Autors
+- Gilles DESBONNETS
+
+# Introduction
 This component is an npm package and can be imported as follows: `npm i p14_react_data_tables`
 
-## 1. Description
+# Requirements
+- Node v20.12.1
 
-...
+# Installation
+- install all packages : `npm install`
+- for the run : `npm start`
+- for the build : `npm run start`
+- for the build package : `npm run build:package` 
+
+## 1. Description
+p14_react_data_tables is a library that allows you to manage table data (sorting, pagination, search).
 
 ## 2. Example of use
 

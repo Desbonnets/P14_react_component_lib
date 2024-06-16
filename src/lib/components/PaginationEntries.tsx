@@ -16,11 +16,13 @@ const PaginationEntries: React.FC<PaginationEntriesProps> = () => {
 
     return (
         <div>
-            <select value={itemNumber} onChange={handleItemsPerPageChange}>
+            <label htmlFor="selectItems">Show </label>
+            <select id="selectItems" value={itemNumber} onChange={handleItemsPerPageChange}>
                 <option value={10}>10</option>
                 <option value={50}>50</option>
                 <option value={100}>100</option>
             </select>
+            entries
         </div>
     );
 };
